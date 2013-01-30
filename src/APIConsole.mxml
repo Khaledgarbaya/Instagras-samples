@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="600" creationComplete="application1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import net.khaledgarbaya.instagras.Instagras;
+			private var appID:String="379c127c8b5c4a078c62804cf0159133";
+			
+			
+			protected function login_clickHandler(event:MouseEvent):void
+			{
+				Instagras.login(loginCallBack,{client_id:appID,
+								response_type:"code",
+								redirect_uri:"https://appfb.streamerz.net/intagras/",
+								scope: 'likes+comments'});
+			}
+			private function loginCallBack(result:Object, failt:Object):void
+			{
+				log.appendText("[loginCallBack] result : "+JSON.stringify(result));
+			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				Instagras.init(appID,initCallBack);
+			}
+			
+			private function initCallBack(result:Object, fail:Object):void
+			{
+				login.enabled = result != null;
+				
+				log.appendText("initCallBack-----------------------------------------\n")
+				log.appendText("Result : \n")
+				log.appendText(JSON.stringify(result)+"\n");
+				log.appendText("Fail : \n")
+				log.appendText(JSON.stringify(fail));
+			}
+			
+			protected function apiCall_clickHandler(event:MouseEvent):void
+			{
+				Instagras.api(apiMethod.text,apiCallBack);
+			}
+			
+			private function apiCallBack(result:Object, fail:Object):void
+			{
+				log.appendText("apiCallBack-----------------------------------------\n")
+				log.appendText("Result : \n")
+				log.appendText(JSON.stringify(result)+"\n");
+				log.appendText("Fail : \n")
+				log.appendText(JSON.stringify(fail));				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Panel title="Instagram Sample" horizontalCenter="0" verticalCenter="0" width="600" height="500">
+		<s:layout>
+			<s:VerticalLayout paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20"/>
+		</s:layout>
+	
+	<mx:HBox paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20">
+		<s:TextInput width="300" id="apiMethod"/>
+		<s:Button id="login" label="Login to Intagram" click="login_clickHandler(event)"/>
+		<s:Button id="apiCall" label="api call" click="apiCall_clickHandler(event)"/>
+	</mx:HBox>
+		<s:TextArea id="log" width="100%" height="100%"/>
+	</s:Panel>
+</s:Application>
