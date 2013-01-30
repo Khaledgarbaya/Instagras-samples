@@ -8,14 +8,14 @@
 			import mx.events.FlexEvent;
 			
 			import net.khaledgarbaya.instagras.Instagras;
-			private var appID:String="379c127c8b5c4a078c62804cf0159133";
+			private var appID:String="APP_ID";
 			
 			
 			protected function login_clickHandler(event:MouseEvent):void
 			{
 				Instagras.login(loginCallBack,{client_id:appID,
 								response_type:"code",
-								redirect_uri:"https://appfb.streamerz.net/intagras/",
+								redirect_uri:"REDIRECT_URI",
 								scope: 'likes+comments'});
 			}
 			private function loginCallBack(result:Object, failt:Object):void
