@@ -2,7 +2,7 @@ Instagras-samples
 =================
 * Code Samples Featuring The [Intagras Library] ( https://github.com/Khaledgarbaya/Instagras )
 
-LICENCE
+LICENSE
 -------
 Simplified BSD License
 ======================
