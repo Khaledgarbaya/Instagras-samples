@@ -1,6 +1,6 @@
 Instagras-samples
 =================
-##Code Samples Featuring The [Intagras Library] ( https://github.com/Khaledgarbaya/Instagras )
+*Code Samples Featuring The [Intagras Library] ( https://github.com/Khaledgarbaya/Instagras )
 
 LICENCE
 -------
